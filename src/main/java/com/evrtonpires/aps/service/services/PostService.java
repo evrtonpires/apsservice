@@ -12,9 +12,11 @@ public class PostService {
 	@Autowired
 	private PostRepository postRepository;
 
-	public PostDomain findById(Integer id) {
+	public PostDomain findById(Integer id) throws Exception {
 		Optional<PostDomain> obj = postRepository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(
+				() -> new Exception ("Nenhum Post encontrado referente ao ID: "+id)
+				);
 	}
 	
 	public PostDomain insertPost(PostDomain obj) {

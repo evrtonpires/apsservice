@@ -13,7 +13,7 @@ public class PostDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 	private String post;
 	public PostDomain(Integer id, String post) {
