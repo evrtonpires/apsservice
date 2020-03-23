@@ -31,7 +31,7 @@ public class PostResource {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insertPost(@RequestBody List<PostDomain> posts) {
 		posts = postService.insertPost(posts);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(((PostDomain) posts).getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(posts.get(posts.size()).getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 }
