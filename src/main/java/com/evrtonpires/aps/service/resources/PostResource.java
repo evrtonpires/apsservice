@@ -1,6 +1,7 @@
 package com.evrtonpires.aps.service.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +29,9 @@ public class PostResource {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insertPost(@RequestBody PostDomain post) {
-		post = postService.insertPost(post);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(post.getId()).toUri();
+	public ResponseEntity<Void> insertPost(@RequestBody List<PostDomain> posts) {
+		posts = postService.insertPost(posts);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(((PostDomain) posts).getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 }
